@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gw.recharge.dal.mapper.ClientDOMapper" >
+  <resultMap id="BaseResultMap" type="com.gw.recharge.dal.model.ClientDO" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CLIENT_NO" property="clientNo" jdbcType="VARCHAR" />
+    <result column="CLIENT_KEY" property="clientKey" jdbcType="VARCHAR" />
+    <result column="CLIENT_DESC" property="clientDesc" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="UPT_TIME" property="uptTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CLIENT_NO, CLIENT_KEY, CLIENT_DESC, STATUS, UPT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_RECHARGE_CLIENT
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_RECHARGE_CLIENT
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gw.recharge.dal.model.ClientDO" >
+    insert into T_RECHARGE_CLIENT (ID, CLIENT_NO, CLIENT_KEY, 
+      CLIENT_DESC, STATUS, UPT_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{clientNo,jdbcType=VARCHAR}, #{clientKey,jdbcType=VARCHAR}, 
+      #{clientDesc,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{uptTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gw.recharge.dal.model.ClientDO" >
+    insert into T_RECHARGE_CLIENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="clientNo != null" >
+        CLIENT_NO,
+      </if>
+      <if test="clientKey != null" >
+        CLIENT_KEY,
+      </if>
+      <if test="clientDesc != null" >
+        CLIENT_DESC,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="uptTime != null" >
+        UPT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clientNo != null" >
+        #{clientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientKey != null" >
+        #{clientKey,jdbcType=VARCHAR},
+      </if>
+      <if test="clientDesc != null" >
+        #{clientDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uptTime != null" >
+        #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gw.recharge.dal.model.ClientDO" >
+    update T_RECHARGE_CLIENT
+    <set >
+      <if test="clientNo != null" >
+        CLIENT_NO = #{clientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clientKey != null" >
+        CLIENT_KEY = #{clientKey,jdbcType=VARCHAR},
+      </if>
+      <if test="clientDesc != null" >
+        CLIENT_DESC = #{clientDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uptTime != null" >
+        UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gw.recharge.dal.model.ClientDO" >
+    update T_RECHARGE_CLIENT
+    set CLIENT_NO = #{clientNo,jdbcType=VARCHAR},
+      CLIENT_KEY = #{clientKey,jdbcType=VARCHAR},
+      CLIENT_DESC = #{clientDesc,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      UPT_TIME = #{uptTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

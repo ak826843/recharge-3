@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+	default-lazy-init="true">
+
+	<bean name="quartzScheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean"
+		lazy-init="default">
+		<property name="autoStartup">
+			<value>true</value>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="queryRechargeOrderStatusTrigger" />
+			</list>
+		</property>
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+	
+	<bean id="queryRechargeOrderStatusJob" class="com.gw.recharge.rt.task.QueryTask"/>
+	
+	<bean id="queryRechargeOrderStatusJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="queryRechargeOrderStatusJob" />
+		<property name="targetMethod" value="execute" />
+		<property name="concurrent" value="false"/>
+	</bean>
+	<bean id="queryRechargeOrderStatusTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="queryRechargeOrderStatusJobDetail" />
+		<property name="cronExpression" value="${orderstatus.query.cronExpression}" />
+	</bean>
+
+</beans>

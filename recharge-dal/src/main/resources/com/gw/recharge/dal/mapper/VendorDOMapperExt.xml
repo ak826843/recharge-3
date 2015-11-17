@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gw.recharge.dal.mapper.VendorDOMapperExt">
+	 <resultMap id="BaseResultMap" type="com.gw.recharge.dal.model.VendorDO" >
+    <id column="VENDOR_ID" property="vendorId" jdbcType="VARCHAR" />
+    <result column="VENDOR_CODE" property="vendorCode" jdbcType="VARCHAR" />
+    <result column="VENDOR_DESC" property="vendorDesc" jdbcType="VARCHAR" />
+    <result column="NOTIFY_URL" property="notifyUrl" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="UPT_TIME" property="uptTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    VENDOR_ID, VENDOR_CODE, VENDOR_DESC, NOTIFY_URL, STATUS, UPT_TIME
+  </sql>
+	
+
+	<select id="getVendorByCode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_RECHARGE_VENDOR 
+		where VENDOR_CODE = #{vendorCode,jdbcType=VARCHAR}
+	</select>
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+                    http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="checkCode00003" class="com.gw.recharge.rt.check.CheckCode00003" />
+
+	<bean id="checkCode10001" class="com.gw.recharge.rt.check.CheckCode10001" />
+	<bean id="checkCode10002" class="com.gw.recharge.rt.check.CheckCode10002" />
+	<bean id="checkCode10003" class="com.gw.recharge.rt.check.CheckCode10003" />
+	<bean id="checkCode10004" class="com.gw.recharge.rt.check.CheckCode10004" />
+	<bean id="checkCode10005" class="com.gw.recharge.rt.check.CheckCode10005" />
+
+	<bean id="checkCodeChainBase" class="org.apache.commons.chain.impl.ChainBase">
+		<constructor-arg>
+			<list>
+				<ref bean="checkCode00003" />
+
+				<ref bean="checkCode10001" />
+				<ref bean="checkCode10002" />
+				<ref bean="checkCode10003" />
+				<ref bean="checkCode10004" />
+				<ref bean="checkCode10005" />
+			</list>
+		</constructor-arg>
+	</bean>
+</beans>

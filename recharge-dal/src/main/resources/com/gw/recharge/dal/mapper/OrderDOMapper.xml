@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gw.recharge.dal.mapper.OrderDOMapper" >
+  <resultMap id="BaseResultMap" type="com.gw.recharge.dal.model.OrderDO" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="CLIENT_NO" property="clientNo" jdbcType="VARCHAR" />
+    <result column="MOBILE_MARK" property="mobileMark" jdbcType="VARCHAR" />
+    <result column="MOBILE_MD5" property="mobileMd5" jdbcType="VARCHAR" />
+    <result column="MOBILE_AES" property="mobileAes" jdbcType="VARCHAR" />
+    <result column="OPERATOR_TIME" property="operatorTime" jdbcType="TIMESTAMP" />
+    <result column="OSN" property="osn" jdbcType="VARCHAR" />
+    <result column="VENDOR_ID" property="vendorId" jdbcType="VARCHAR" />
+    <result column="BIZ_TYPE" property="bizType" jdbcType="INTEGER" />
+    <result column="AMOUNT" property="amount" jdbcType="INTEGER" />
+    <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="RESP_CODE" property="respCode" jdbcType="VARCHAR" />
+    <result column="RESP_MSG" property="respMsg" jdbcType="VARCHAR" />
+    <result column="VENDOR_ORDER_NO" property="vendorOrderNo" jdbcType="VARCHAR" />
+    <result column="BEGIN_TIME" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="CRT_TIME" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="UPT_TIME" property="uptTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ID, CLIENT_NO, MOBILE_MARK, MOBILE_MD5, MOBILE_AES, OPERATOR_TIME, OSN, 
+    VENDOR_ID, BIZ_TYPE, AMOUNT, ORDER_STATUS, RESP_CODE, RESP_MSG, VENDOR_ORDER_NO, 
+    BEGIN_TIME, END_TIME, CRT_TIME, UPT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_RECHARGE_ORDER
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_RECHARGE_ORDER
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gw.recharge.dal.model.OrderDO" useGeneratedKeys="true" keyProperty="id">
+    insert into T_RECHARGE_ORDER (ID, ORDER_ID, CLIENT_NO, 
+      MOBILE_MARK, MOBILE_MD5, MOBILE_AES, 
+      OPERATOR_TIME, OSN, VENDOR_ID, 
+      BIZ_TYPE, AMOUNT, ORDER_STATUS, 
+      RESP_CODE, RESP_MSG, VENDOR_ORDER_NO, 
+      BEGIN_TIME, END_TIME, CRT_TIME, 
+      UPT_TIME)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{clientNo,jdbcType=VARCHAR}, 
+      #{mobileMark,jdbcType=VARCHAR}, #{mobileMd5,jdbcType=VARCHAR}, #{mobileAes,jdbcType=VARCHAR}, 
+      #{operatorTime,jdbcType=TIMESTAMP}, #{osn,jdbcType=VARCHAR}, #{vendorId,jdbcType=VARCHAR}, 
+      #{bizType,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{respCode,jdbcType=VARCHAR}, #{respMsg,jdbcType=VARCHAR}, #{vendorOrderNo,jdbcType=VARCHAR}, 
+      #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{crtTime,jdbcType=TIMESTAMP}, 
+      #{uptTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gw.recharge.dal.model.OrderDO" >
+    insert into T_RECHARGE_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="clientNo != null" >
+        CLIENT_NO,
+      </if>
+      <if test="mobileMark != null" >
+        MOBILE_MARK,
+      </if>
+      <if test="mobileMd5 != null" >
+        MOBILE_MD5,
+      </if>
+      <if test="mobileAes != null" >
+        MOBILE_AES,
+      </if>
+      <if test="operatorTime != null" >
+        OPERATOR_TIME,
+      </if>
+      <if test="osn != null" >
+        OSN,
+      </if>
+      <if test="vendorId != null" >
+        VENDOR_ID,
+      </if>
+      <if test="bizType != null" >
+        BIZ_TYPE,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS,
+      </if>
+      <if test="respCode != null" >
+        RESP_CODE,
+      </if>
+      <if test="respMsg != null" >
+        RESP_MSG,
+      </if>
+      <if test="vendorOrderNo != null" >
+        VENDOR_ORDER_NO,
+      </if>
+      <if test="beginTime != null" >
+        BEGIN_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME,
+      </if>
+      <if test="uptTime != null" >
+        UPT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientNo != null" >
+        #{clientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileMark != null" >
+        #{mobileMark,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileMd5 != null" >
+        #{mobileMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileAes != null" >
+        #{mobileAes,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="osn != null" >
+        #{osn,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorId != null" >
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizType != null" >
+        #{bizType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="respCode != null" >
+        #{respCode,jdbcType=VARCHAR},
+      </if>
+      <if test="respMsg != null" >
+        #{respMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorOrderNo != null" >
+        #{vendorOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptTime != null" >
+        #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gw.recharge.dal.model.OrderDO" >
+    update T_RECHARGE_ORDER
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientNo != null" >
+        CLIENT_NO = #{clientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileMark != null" >
+        MOBILE_MARK = #{mobileMark,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileMd5 != null" >
+        MOBILE_MD5 = #{mobileMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileAes != null" >
+        MOBILE_AES = #{mobileAes,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        OPERATOR_TIME = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="osn != null" >
+        OSN = #{osn,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorId != null" >
+        VENDOR_ID = #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizType != null" >
+        BIZ_TYPE = #{bizType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="respCode != null" >
+        RESP_CODE = #{respCode,jdbcType=VARCHAR},
+      </if>
+      <if test="respMsg != null" >
+        RESP_MSG = #{respMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorOrderNo != null" >
+        VENDOR_ORDER_NO = #{vendorOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptTime != null" >
+        UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gw.recharge.dal.model.OrderDO" >
+    update T_RECHARGE_ORDER
+    set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      CLIENT_NO = #{clientNo,jdbcType=VARCHAR},
+      MOBILE_MARK = #{mobileMark,jdbcType=VARCHAR},
+      MOBILE_MD5 = #{mobileMd5,jdbcType=VARCHAR},
+      MOBILE_AES = #{mobileAes,jdbcType=VARCHAR},
+      OPERATOR_TIME = #{operatorTime,jdbcType=TIMESTAMP},
+      OSN = #{osn,jdbcType=VARCHAR},
+      VENDOR_ID = #{vendorId,jdbcType=VARCHAR},
+      BIZ_TYPE = #{bizType,jdbcType=INTEGER},
+      AMOUNT = #{amount,jdbcType=INTEGER},
+      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      RESP_CODE = #{respCode,jdbcType=VARCHAR},
+      RESP_MSG = #{respMsg,jdbcType=VARCHAR},
+      VENDOR_ORDER_NO = #{vendorOrderNo,jdbcType=VARCHAR},
+      BEGIN_TIME = #{beginTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      UPT_TIME = #{uptTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
